@@ -29,39 +29,39 @@ Uygulamanın şablonunu kendi deponuzda geliştirmek veya GitHub Pages üzerinde
 
 ### 1️⃣ Projeyi İndirin
 Projeyi kendi yerel makinenize klonlayın:
-\`\`\`bash
+```bash
 git clone https://github.com/yusufkaramuk/SarkiTurBul.git
 cd SarkiTurBul
-\`\`\`
+```
 
 ### 2️⃣ Ortam Değişkenlerini (Config) Ayarlayın
-Projenin kök dizinindeki `config.example.js` dosyasının adını `config.js` olarak değiştirin.
+Projenin kök dizinindeki config.example.js dosyasının adını config.js olarak değiştirin.
 
-\`\`\`bash
+```bash
 mv config.example.js config.js
-\`\`\`
+```
 
-> **Not:** `config.js` dosyası `.gitignore` kurallarına dahil edilmiştir ve asla GitHub'a veya herhangi bir uzak depoya pushlanmaz. Verileriniz %100 güvendedir.
+> **Not:** config.js dosyası .gitignore kurallarına dahil edilmiştir ve asla GitHub'a veya herhangi bir uzak depoya aktarılmaz. Yüklemeyeceğiniz için verileriniz %100 güvendedir.
 
 ### 3️⃣ API Anahtarlarını Alın
 **Google Cloud kimlik doğrulaması:**
 1. [Google Cloud Console](https://console.cloud.google.com/)'a gidin ve yeni bir proje oluşturun.
-2. `APIs & Services` > `OAuth consent screen` kısmından uygulamanızı ayarlayın.
-3. `Credentials` sekmesinden bir **OAuth Client ID (Web Application)** oluşturun ve Authorized JavaScript Origins kısmına yayıncı URL'nizi (veya localhost) ekleyin.
+2. APIs & Services > OAuth consent screen kısmından uygulamanızı ayarlayın.
+3. Credentials sekmesinden bir OAuth Client ID (Web Application) oluşturun ve Authorized JavaScript Origins kısmına yayıncı URL'nizi (veya localhost) ekleyin.
 
 **Gemini Yapay Zeka Anahtarı:**
 1. [Google AI Studio](https://aistudio.google.com/apikey) adresinden ücretsiz bir Gemini API Anahtarı kopyalayın.
 
 ### 4️⃣ Ayarları Uygulayın
-\`config.js\` dosyasını açıp elde ettiğiniz iki değeri yerlerine yapıştırın:
-\`\`\`javascript
+config.js dosyasını açıp elde ettiğiniz iki değeri yerlerine yapıştırın:
+```javascript
 const CONFIG = {
     GOOGLE_CLIENT_ID: 'YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com',
     GEMINI_API_KEY: 'YOUR_GEMINI_API_KEY_HERE'
 };
-\`\`\`
+```
 
-Yerel bilgisayarınızda bir lokal sunucu (örn. VSCode Live Server) baslatıp `index.html` üzerinden hemen test edebilirsiniz!
+Yerel bilgisayarınızda bir lokal sunucu başlatıp index.html üzerinden hemen test edebilirsiniz!
 
 ---
 
@@ -77,6 +77,4 @@ Yerel bilgisayarınızda bir lokal sunucu (örn. VSCode Live Server) baslatıp `
 ---
 
 ## 📄 Lisans
-Bu proje geliştiricilere açık olarak konumlandırılmış olup, dilediğiniz gibi kullanabilmeniz ve düzenleyebilmeniz için **MIT License** ile lisanslanmıştır. 
-
-*Muallim ekibi tarafından gururla tasarlanmış ve geliştirilmiştir.*
+Bu proje geliştiricilere açık olarak konumlandırılmış olup, dilediğiniz gibi kullanabilmeniz ve düzenleyebilmeniz için **MIT License** ile lisanslanmıştır.

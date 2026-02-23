@@ -34,7 +34,7 @@ Eğer bulunamazsa sadece şunu yaz:
 Sadece yukarıdaki iki formattan birini kullan, başka bir şey yazma. Türkçe cevap ver.`;
 
 // ===== State =====
-let isSignedIn = false;
+let isSignedIn = localStorage.getItem('muziktur_session') === 'true';
 
 // ===== Google Sign-In (ID token — only for auth UX) =====
 function initGoogleSignIn() {
@@ -43,13 +43,19 @@ function initGoogleSignIn() {
         return;
     }
 
-    if (!CONFIG || CONFIG.GOOGLE_CLIENT_ID.startsWith('YOUR_')) {
+    if (typeof CONFIG === 'undefined') {
+        loginBtn.textContent = '⚠️ config.js dosyası eksik';
+        loginBtn.disabled = true;
+        return;
+    }
+
+    if (!CONFIG.GOOGLE_CLIENT_ID || CONFIG.GOOGLE_CLIENT_ID.startsWith('YOUR_')) {
         loginBtn.textContent = '⚠️ config.js: Client ID ayarlanmamış';
         loginBtn.disabled = true;
         return;
     }
 
-    if (CONFIG.GEMINI_API_KEY.startsWith('YOUR_')) {
+    if (!CONFIG.GEMINI_API_KEY || CONFIG.GEMINI_API_KEY.startsWith('YOUR_')) {
         loginBtn.textContent = '⚠️ config.js: API Key ayarlanmamış';
         loginBtn.disabled = true;
         return;
@@ -62,14 +68,35 @@ function initGoogleSignIn() {
     });
 
     loginBtn.disabled = false;
+
+    // Check if user was already signed in from a previous session
+    if (isSignedIn) {
+        // Try to restore user info from localStorage
+        const savedName = localStorage.getItem('muziktur_user_name');
+        const savedAvatar = localStorage.getItem('muziktur_user_avatar');
+        if (savedName) userName.textContent = savedName;
+        if (savedAvatar) userAvatar.src = savedAvatar;
+
+        showApp();
+    }
 }
 
 function handleSignIn(response) {
     // Decode the JWT ID token to get user info
     const payload = JSON.parse(atob(response.credential.split('.')[1]));
-    userAvatar.src = payload.picture || '';
-    userName.textContent = payload.name || payload.email || 'Kullanıcı';
+
+    const avatarUrl = payload.picture || '';
+    const name = payload.name || payload.email || 'Kullanıcı';
+
+    userAvatar.src = avatarUrl;
+    userName.textContent = name;
+
+    // Save session
     isSignedIn = true;
+    localStorage.setItem('muziktur_session', 'true');
+    localStorage.setItem('muziktur_user_name', name);
+    localStorage.setItem('muziktur_user_avatar', avatarUrl);
+
     showApp();
 }
 
@@ -82,6 +109,10 @@ function showApp() {
 
 function showLogin() {
     isSignedIn = false;
+    localStorage.removeItem('muziktur_session');
+    localStorage.removeItem('muziktur_user_name');
+    localStorage.removeItem('muziktur_user_avatar');
+
     appContainer.classList.add('hidden');
     loginScreen.classList.remove('hidden');
     hideCards();

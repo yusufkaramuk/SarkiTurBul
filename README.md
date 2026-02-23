@@ -13,6 +13,13 @@ Kendi API sınırlarınızı yönetmeden, sadece profilinizle giriş yaparak sis
 
 ---
 
+## 🌐 Canlı Demo
+
+Uygulamayı hemen test etmek için aşağıdaki linke tıklayabilirsiniz:
+👉 **[https://sarkiturbul-live.netlify.app](https://sarkiturbul-live.netlify.app)**
+
+---
+
 ## ✨ Öne Çıkan Özellikler
 
 - **🔒 Güvenli ve Kolay Giriş (Google OAuth 2.0):** Sadece Google hesabınızla giriş yaparak uygulamayı kullanmaya başlayın.

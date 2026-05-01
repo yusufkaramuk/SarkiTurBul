@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
         content="Şarkı veya sanatçı adı girerek müzik türünü anında öğrenin. Google Gemini AI destekli müzik türü bulucu.">
-    <title>MüzikTürÖğren – Müzik Türü Bulucu</title>
+    <title>MüzikTürÖğren – Müzik Türü & Hikaye Bulucu</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
@@ -53,47 +53,90 @@
                 <button id="logoutBtn" class="btn-logout" title="Çıkış Yap">Çıkış</button>
             </div>
             <h1>Müzik<span class="accent">Tür</span>Öğren</h1>
-            <p class="subtitle">Şarkı veya sanatçı adını yaz, müzik türünü öğren 🎵</p>
+
+            <!-- Tab Navigation -->
+            <div class="tab-nav">
+                <button class="tab-btn active" data-tab="genre">🎵 Tür Bul</button>
+                <button class="tab-btn" data-tab="story">📖 Hikaye</button>
+            </div>
         </header>
 
         <main>
-            <div class="search-section">
-                <div class="input-wrapper">
-                    <textarea id="userInput"
-                        placeholder="Örn: Tarkan - Dudu&#10;veya sadece: Metallica&#10;veya: Bohemian Rhapsody"
-                        rows="3"></textarea>
+            <!-- Genre Tab -->
+            <div id="tabGenre" class="tab-panel">
+                <p class="subtitle">Şarkı veya sanatçı adını yaz, müzik türünü öğren 🎵</p>
+                <div class="search-section">
+                    <div class="input-wrapper">
+                        <textarea id="userInput"
+                            placeholder="Örn: Tarkan - Dudu&#10;veya sadece: Metallica&#10;veya: Bohemian Rhapsody"
+                            rows="3"></textarea>
+                    </div>
+                    <button id="searchBtn" class="btn btn-search" disabled>
+                        <span class="btn-text">Türünü Bul</span>
+                        <span class="btn-loader">
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </span>
+                    </button>
                 </div>
-                <button id="searchBtn" class="btn btn-search" disabled>
-                    <span class="btn-text">Türünü Bul</span>
-                    <span class="btn-loader">
-                        <span class="dot"></span>
-                        <span class="dot"></span>
-                        <span class="dot"></span>
-                    </span>
-                </button>
+
+                <div id="resultCard" class="result-card hidden">
+                    <div class="result-header">
+                        <span class="result-icon">🎶</span>
+                        <span class="result-label">Sonuç</span>
+                    </div>
+                    <div id="resultContent" class="result-content"></div>
+                </div>
+
+                <div id="errorCard" class="error-card hidden">
+                    <div class="error-header">
+                        <span class="error-icon">⚠️</span>
+                        <span class="error-label">Hata</span>
+                    </div>
+                    <div id="errorContent" class="error-content"></div>
+                </div>
             </div>
 
-            <!-- Result Card -->
-            <div id="resultCard" class="result-card hidden">
-                <div class="result-header">
-                    <span class="result-icon">🎶</span>
-                    <span class="result-label">Sonuç</span>
+            <!-- Story Tab -->
+            <div id="tabStory" class="tab-panel hidden">
+                <p class="subtitle">Şarkının arkasındaki hikayeyi keşfet 📖</p>
+                <div class="search-section">
+                    <div class="input-wrapper">
+                        <textarea id="storyInput"
+                            placeholder="Örn: Queen - Bohemian Rhapsody&#10;veya: Nirvana - Smells Like Teen Spirit&#10;veya: Sezen Aksu - Firuze"
+                            rows="3"></textarea>
+                    </div>
+                    <button id="storyBtn" class="btn btn-search btn-story" disabled>
+                        <span class="btn-text">Hikayeyi Bul</span>
+                        <span class="btn-loader">
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </span>
+                    </button>
                 </div>
-                <div id="resultContent" class="result-content"></div>
-            </div>
 
-            <!-- Error Card -->
-            <div id="errorCard" class="error-card hidden">
-                <div class="error-header">
-                    <span class="error-icon">⚠️</span>
-                    <span class="error-label">Hata</span>
+                <div id="storyResultCard" class="result-card hidden">
+                    <div class="result-header">
+                        <span class="result-icon">📖</span>
+                        <span class="result-label">Hikaye</span>
+                    </div>
+                    <div id="storyResultContent" class="result-content"></div>
                 </div>
-                <div id="errorContent" class="error-content"></div>
+
+                <div id="storyErrorCard" class="error-card hidden">
+                    <div class="error-header">
+                        <span class="error-icon">⚠️</span>
+                        <span class="error-label">Hata</span>
+                    </div>
+                    <div id="storyErrorContent" class="error-content"></div>
+                </div>
             </div>
         </main>
 
         <footer>
-            <p>Açık kaynak · Gemini 2.5 Flash ile çalışır</p>
+            <p>Açık kaynak · Gemini 3 Flash ile çalışır</p>
         </footer>
     </div>
 

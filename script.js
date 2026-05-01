@@ -23,7 +23,7 @@ const storyErrorCard = document.getElementById('storyErrorCard');
 const storyErrorContent = document.getElementById('storyErrorContent');
 
 // ===== Constants =====
-const GEMINI_MODEL = 'gemini-2.5-flash';
+const GEMINI_MODEL = 'gemini-2.5-flash-lite';
 const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`;
 
 const SYSTEM_PROMPT = `Sen bir müzik uzmanısın. Sana verilen şarkı ve/veya sanatçı bilgisine göre müzik türünü (genre) belirle.

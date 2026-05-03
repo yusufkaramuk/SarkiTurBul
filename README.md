@@ -16,7 +16,7 @@ Kendi API sınırlarınızı yönetmeden, sadece profilinizle giriş yaparak sis
 ## 🌐 Canlı Demo
 
 Uygulamayı hemen test etmek için aşağıdaki linke tıklayabilirsiniz:
-👉 **[https://sarkiturbul-live.netlify.app](https://sarkiturbul-live.netlify.app)**
+👉 **[https://sarkiturbul.yusufkaramuk10.workers.dev/](https://sarkiturbul.yusufkaramuk10.workers.dev/)**
 
 ---
 
